@@ -28,10 +28,10 @@ function loadProducts(productArr) {
         const nameBeneath = document.createElement('h3');
         nameBeneath.innerHTML = productName;
         boxContainer.appendChild(nameBeneath);
+        // image tag
         const imageBeneath = document.createElement('img');
-        imageBeneath.setAttribute('src', productImage);
-        priceBeneath.innerHTML = `$ ${productPrice}`;
-        boxContainer.appendChild(priceBeneath);
+        imageBeneath.src = productImage;
+        boxContainer.appendChild(imageBeneath);
         const priceBeneath = document.createElement('h4');
         priceBeneath.innerHTML = `$ ${productPrice}`;
         boxContainer.appendChild(priceBeneath);
