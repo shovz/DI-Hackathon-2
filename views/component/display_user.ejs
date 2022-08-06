@@ -1,0 +1,49 @@
+<div id="user" class="nav-item"></div>
+<div id="signOut" class="nav-item">Sign Out</div>
+<div id="signin" class="nav-item">Sign In</div>
+<div id="register" class="nav-item">Register</div>
+<div id="cart" class="nav-item">
+    <i class="fa-solid fa-cart-shopping"></i>
+ </div>
+
+ 
+ <script>
+    let signed_user = JSON.parse(localStorage.getItem("user"));
+    let user = document.getElementById("user");
+    let signin = document.getElementById("signin");
+    let signOut = document.getElementById("signOut");
+    let register = document.getElementById("register");
+    console.log(user);
+    if(signed_user==null){
+        user.style.display="none";
+        signOut.style.display="none";
+    }
+    else{
+        user.textContent= "hello\n"+ signed_user;
+        user.style.display="inline";
+        signOut.style.display="inline";
+        register.style.display="none";
+        signin.style.display="none";
+    }
+
+    cart.addEventListener('click',()=>{
+        if(signed_user){
+            window.location.href="http://localhost:3000/cart"
+        }
+        else{
+            window.location.href="http://localhost:3000/register"
+
+        }
+    })
+    register.addEventListener('click',()=>{
+        window.location.href="http://localhost:3000/register"
+    })
+    signin.addEventListener('click',()=>{
+        window.location.href="http://localhost:3000/signin"
+    })
+    signOut.addEventListener('click',()=>{
+        localStorage.clear();
+        window.location.href="http://localhost:3000/"
+    })
+
+ </script>

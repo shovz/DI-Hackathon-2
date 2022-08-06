@@ -27,6 +27,7 @@
   text-decoration: none;
   color: white;
   color: var(--theme-color);
+  cursor: pointer;
 }
 
 .logo {
@@ -68,16 +69,16 @@
   margin: 3px;
   padding-left: 2px;
   border-right: 1px solid grey;
-  max-width: 5em;
+  width: 100px;
   outline: none;
   color: grey;
   
 }
-.search-product{
-    width: 50px;
+#search_product{
     height: auto;
     margin: 5px;
-    text-decoration: none;
+    background-color: white;
+    border: none;
 }
 
 .navbar-items-right{

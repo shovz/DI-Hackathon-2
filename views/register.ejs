@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="register_container">
+        <div class="logo">
+            <a href="../home_page/home.html">
+                <img  src="https://github.com/subeshb1/GrabCheap/blob/master/img/logo_inverse.jpg?raw=true"
+                alt="logo">
+            </a>
+        </div>
+        <div class="form_container">
+            
+            <form id="register_form">
+                <h1>Create account</h1>
+                First Name : <input class="register"  id="fname" type="text"><br><br>
+                Lase Name : <input class="register"  id="lname" type="text"><br><br>
+                Email : <input class="register"  id="email" type="email"><br><br>
+                Password : <input class="register" placeholder="At least 6 characters" id="password" type="password"><br><br>
+                Re-enter password : <input class="register" placeholder="Repeat Password" id="password_check" type="password"><br><br>
+                <input id="register_btn" type="submit" value="register">
+            </form>
+            <div class="register_signIn">
+                <div>Already have an account? <a href="http://localhost:3000/signIn"">signIn</a></div>
+            </div>
+        </div>
+        <div id="register_moreInfo">
+            <div id="help_and_rights">
+                <h3>help</h3>
+                <h3>privacy notice</h3>
+            </div>
+            <div>© 2022, Big Buyers, Inc. or its affiliates</div>
+        </div>
+    </div>
+    <script src="./js/register.js"></script>
+</body>
+</html>
