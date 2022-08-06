@@ -26,35 +26,31 @@ function clickItems() {
 
 clickItems();
 
-function filterItems(e){
+function filterItems(e){ // still working on price filter, but this is for categories
     console.log(e.target.id);
     products = document.getElementsByClassName('boxContainer');
     for (let i = 0; i < products.length; i++) {
         if (e.target.id == 'men' && products[i].id > 4) {
             products[i].style.display = 'none'
             console.log(products[i]);
+        } else if (e.target.id == 'men' && products[i].id <= 4) {
+            products[i].style.display = 'block';
         }
-        // else {
-        //     products[i].style.display = 'block';
-        // }
         if (e.target.id == 'women' && products[i].id < 15) {
             products[i].style.display = 'none'
-        } 
-        // else {
-        //     // products[i].style.display = 'block'
-        // }
+        } else if (e.target.id == 'women' && products[i].id >= 15) {
+            products[i].style.display = 'block'
+        }
         if (e.target.id == 'jewelry' && (products[i].id < 5 || products[i].id > 8)) {
             products[i].style.display = 'none'
-        } 
-        // else {
-        //     products[i].style.display = 'block'
-        // }
+        } else if (e.target.id == 'jewelry' && (products[i].id >= 5 || products[i].id <= 8)) {
+            products[i].style.display = 'block'
+        }
         if (e.target.id == 'electronics' && (products[i].id < 9 || products[i].id > 14)) {
             products[i].style.display = 'none'
-        } 
-        // else {
-        //     products[i].style.display = 'block'
-        // }
+        } else if (e.target.id == 'electronics' && (products[i].id < 9 || products[i].id > 14)) {
+            products[i].style.display = 'block'
+        }
     }
 }
     //load products, with an array of just the one's with the ID
