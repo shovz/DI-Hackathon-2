@@ -31,3 +31,8 @@ product_search = event.target.value;
 
 searchForm.addEventListener("submit",searchProduct);
 })
+
+
+search.addEventListener('input',(event)=>{product_search = event.target.value
+})
+searchForm.addEventListener("submit",searchProduct);

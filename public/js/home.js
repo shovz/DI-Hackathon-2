@@ -1,4 +1,3 @@
-
 let cards_title = document.querySelectorAll(".card_title");
 
 const filterProducts=(data)=>{
@@ -76,6 +75,4 @@ const fetchProducts=(function(){
     console.log(err);
   })
 })();
-
-
 
