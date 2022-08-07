@@ -1,4 +1,5 @@
 let cards_title = document.querySelectorAll(".card_title");
+
 const filterProducts=(data)=>{
   let category = [];
   data.forEach(element => {
@@ -74,11 +75,4 @@ const fetchProducts=(function(){
     console.log(err);
   })
 })();
-
-
-
-
-
-
-
 

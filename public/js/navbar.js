@@ -17,21 +17,20 @@ home.addEventListener("click",()=>{
 
 const searchProduct=(event)=>{
 event.preventDefault();
-    let stored_search = localStorage.getItem("search")|| [];
-    if(stored_search.length){
-        localStorage.removeItem("search");
-        console.log("search empty");
-    }
-    else{
-        let select_Category = getCategory();
-        localStorage.setItem("search",JSON.stringify({select_Category:select_Category ,product_search:product_search}));
-        window.location.href="http://localhost:3000/search";
-    }
-    
-
+    let select_Category = getCategory();
+    localStorage.setItem("search",JSON.stringify({select_Category:select_Category,product_search:product_search}))
+    window.location.href="http://localhost:3000/search"
 
 }
 
+
+
+search.addEventListener('input',(event)=>{
+product_search = event.target.value;
+
+
+searchForm.addEventListener("submit",searchProduct);
+})
 
 
 search.addEventListener('input',(event)=>{product_search = event.target.value
