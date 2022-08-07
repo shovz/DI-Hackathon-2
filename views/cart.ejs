@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <!------------>
+<!-- NavBar Section -->
+    <!------------>
+    <%- include ("./component/navbar")%>
+
+
+    <!------------>
+<!-- main Section -->
+    <!------------>
+
+    <section class="my_cart">
+        <div class="user_cart"></div>
+        <div class="cart_list_section">
+            <div class="cart_list">
+                <div class="cart_title">
+                    Select all items
+                    <div class="Select_all_items">
+                        <input type="checkbox" name="Select_all_items" class="select_item">
+                        <button id="cart_delete_all">delete</button>
+                    </div>
+                </div>
+                <%- include ("./component/cart_items")%>
+            </div>
+            <div class="summary_section">
+                <div class="summary">
+                    <div class="payment_titles">Summary</div>
+                    <div class="subtotal">
+                        <div>subtotal</div>
+                        <div>price</div>
+                    </div>
+                    <div class="total">
+                        <div>total</div>
+                        <div>price</div>
+                    </div>
+                    <button type="submit" id="checkout">checkout</button>
+                </div>
+                <div class="payment_methods">
+                    <div class="payment_titles">Payment methods</div>
+                    <div class="payments_logos">
+                        <i class="fa-brands fa-cc-visa fa-2x"></i>
+                        <i class="fa-brands fa-cc-mastercard fa-2x"></i>
+                        <i class="fa-brands fa-paypal fa-2x"></i>
+                        <i class="fa-brands fa-bitcoin fa-2x"></i>
+                    </div>
+                    <div class="payment_titles">Buyer Protection</div >
+                    <div class="buyer_Protection">
+                        <i class="fa-solid fa-shield"></i> 
+                        <p>Get full refund if the item is not as described or if is not delivered</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script src="./js/cart.js"></script>
+</body>
+</html>
