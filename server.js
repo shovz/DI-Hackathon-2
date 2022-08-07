@@ -43,6 +43,7 @@ app.get('/cart',(req,res)=>{
   res.render('cart')
 })
 app.get('/search',(req,res)=>{
+  
   res.render('product');
 })
 //  POST requests
@@ -114,6 +115,7 @@ app.post('/signIn',(req,res)=>{
 app.post('/search',(req,res)=>{
   const {select_Category,product_search} = req.body;
   console.log(select_Category,product_search);
+
   res.json(true)
 })
 

@@ -1,6 +1,7 @@
 let searchForm = document.getElementsByTagName("form")[0];
 let search = document.getElementById("search_Category");
 let cards_title = document.querySelectorAll(".card_title");
+let home = document.querySelector(".logo");
 let product_search="";
 
 
@@ -15,7 +16,7 @@ const searchProduct=(event)=>{
         body: JSON.stringify({select_Category,product_search})
       })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then(window.location.href="http://localhost:3000/search")
     .catch(err=> {
         console.log(err);
       })
@@ -110,6 +111,7 @@ search.addEventListener('input',(event)=>{
     product_search = event.target.value;
 })
 searchForm.addEventListener("submit",searchProduct);
+
 
 
 
