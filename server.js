@@ -22,6 +22,8 @@ app.use('/',express.static(__dirname +"/public"));
 app.use('/register',express.static(__dirname +"/public"));
 app.use('/signIn',express.static(__dirname +"/public"));
 app.use('/cart',express.static(__dirname +"/public"));
+app.use('/search',express.static(__dirname +"/public"));
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

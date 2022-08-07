@@ -7,14 +7,15 @@
 body{
     line-height: 19px;
     color: #111;
-    background-color: darkgray;
 }
 .signIn_container{
     display: flex;
     flex-direction: column;
     max-width: 560px;
     align-items: center;
-    margin: 10px auto;
+    margin: 60px auto;
+    border: ;
+    height: 600px;
     background-color: rgb(120, 40, 115);
     
 }

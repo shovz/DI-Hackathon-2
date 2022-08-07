@@ -36,10 +36,12 @@
   align-items: center;
   display: flex;
   width: 20%;
+
 }
 
 .logo img {
-  max-width: 40px;
+  width: auto;
+  height: 70px;
 }
 .search {
   display:flex;
