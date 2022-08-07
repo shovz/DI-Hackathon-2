@@ -1,6 +1,6 @@
 const express = require('express');
 const knex = require('knex');
-
+let user;
 const db = knex({
     client:'pg',
     connection:{
@@ -40,11 +40,10 @@ app.get('/signIn',(req,res)=>{
   res.render('signIn')
 })
 app.get('/cart',(req,res)=>{
-  res.render('cart')
+  res.render('cart');
 })
 app.get('/search',(req,res)=>{
   
-  res.render('product');
 })
 //  POST requests
 app.post('/',(req,res)=>{
@@ -99,11 +98,15 @@ app.post('/register',(req,res)=>{
 
 })
 app.post('/signIn',(req,res)=>{
+ 
     const {email,password} = req.body;
+    user=email;
+    console.log(user);
     // console.log(email,password);
     isSignedIn(email,password)
     .then(data=>{
         if(data.length){
+
             res.json(data[0]);
         }   
         else {
@@ -111,6 +114,28 @@ app.post('/signIn',(req,res)=>{
         }
     });
 
+})
+app.post('/cart',(req,res)=>{
+  console.log(user);
+  try{
+    db('cart')
+    .innerJoin('users',function() {
+        this.on('cart.user_id', '=', 'users.user_id')
+    })
+    .innerJoin('products',function() {
+        this.orOn('cart.product_id', '=', 'products.product_id')
+    })
+    .select('*')
+    .where({email: user})
+    .then(data=>{
+      res.json(data)
+    }).catch(err=>{
+        console.log(err,"asd");
+    })
+  }
+  catch (err){
+    res.status(500).json({message: "can't get posts"})
+  }
 })
 app.post('/search',(req,res)=>{
   const {select_Category,product_search} = req.body;
