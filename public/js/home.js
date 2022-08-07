@@ -1,35 +1,5 @@
-let searchForm = document.getElementsByTagName("form")[0];
-let search = document.getElementById("search_Category");
+
 let cards_title = document.querySelectorAll(".card_title");
-let home = document.querySelector(".logo");
-let product_search="";
-
-
-const searchProduct=(event)=>{
-    event.preventDefault();
-    let select_Category = getCategory();
-    fetch('http://localhost:3000/search',{
-        method:'POST',
-        headers: {
-          'Content-Type':'application/json'
-        },
-        body: JSON.stringify({select_Category,product_search})
-      })
-      .then((response) => response.json())
-      .then(window.location.href="http://localhost:3000/search")
-    .catch(err=> {
-        console.log(err);
-      })
-
-}
-const getCategory=()=>{
-    let select_Category = document.getElementById("select_Category").value;
-    let category = document.getElementById("select_Category")
-    category.addEventListener('change',(event)=>{
-        select_Category = event.target.value;
-    })
-    return select_Category
-}
 
 const filterProducts=(data)=>{
   let category = [];
@@ -106,13 +76,6 @@ const fetchProducts=(function(){
     console.log(err);
   })
 })();
-
-search.addEventListener('input',(event)=>{
-    product_search = event.target.value;
-})
-searchForm.addEventListener("submit",searchProduct);
-
-
 
 
 

@@ -18,7 +18,7 @@ home.addEventListener("click",()=>{
 const searchProduct=(event)=>{
 event.preventDefault();
     let select_Category = getCategory();
-    localStorage.setItem("search")
+    localStorage.setItem("search",JSON.stringify({select_Category:select_Category,product_search:product_search}))
     window.location.href="http://localhost:3000/search"
 
 }
