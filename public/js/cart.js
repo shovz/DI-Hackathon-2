@@ -1,8 +1,11 @@
 // let register = document.getElementById("register");
-let h1 = document.createElement("h1");
-document.body.append(h1);
+let user_cart = document.querySelector(".user_cart");
+user_cart.textContent= JSON.parse(localStorage.getItem("user")) + " Cart";
 
-const registerUser=(event)=>{
+let Select_all_items = document.querySelector('.Select_all_items input');
+
+
+const displayCartItems=(event)=>{
     event.preventDefault();
     let fname = document.getElementById("fname").value;
     let lname = document.getElementById("lname").value;
@@ -31,7 +34,14 @@ const registerUser=(event)=>{
 
 }
 
-// register.addEventListener("submit",registerUser);
+
+const SelectAllCartItems=()=>{
+  
+  if(Select_all_items.checked){
+
+  }
+}
+Select_all_items.addEventListener("change",SelectAllCartItems);
 
 
 

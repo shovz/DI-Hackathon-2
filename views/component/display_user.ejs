@@ -3,7 +3,10 @@
 <div id="signin" class="nav-item">Sign In</div>
 <div id="register" class="nav-item">Register</div>
 <div id="cart" class="nav-item">
-    <i class="fa-solid fa-cart-shopping"></i>
+    <span class="cart_icon">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </span>
+    <div class="items_in_cart">0</div>
  </div>
 
  
@@ -13,7 +16,7 @@
     let signin = document.getElementById("signin");
     let signOut = document.getElementById("signOut");
     let register = document.getElementById("register");
-    console.log(user);
+    // console.log(user);
     if(signed_user==null){
         user.style.display="none";
         signOut.style.display="none";

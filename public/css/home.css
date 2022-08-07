@@ -88,12 +88,24 @@
     margin: 5px;
 
 }
+#cart{
+  position: relative;
+}
+.items_in_cart{
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  padding: 0 5px;
+  border-radius: 30%;
+}
 
 
 .main {
   max-width:fit-content;
   margin: auto;
-  background-color: bisque;
+  background-color: rgb(255, 255, 255);
   
 }
 .cards {
@@ -105,7 +117,9 @@
 .card{
   width: 250px;
   height: 400px;
-  background-color: darkcyan;
+  background-color: rgb(255, 255, 255);
+  /* border: 1px solid gray; */
+  box-shadow: 1px 1px 5px 0.25px black;
   margin: 10px;
   display: flex;
   flex-direction: column;
@@ -128,7 +142,7 @@
 }
 .card-item img{
   width: 200px;
-  height: auto;
+  max-height: 300px;
 }
 
 

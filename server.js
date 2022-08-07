@@ -1,5 +1,6 @@
 const express = require('express');
 const knex = require('knex');
+
 const db = knex({
     client:'pg',
     connection:{
@@ -39,27 +40,54 @@ app.get('/signIn',(req,res)=>{
 app.get('/cart',(req,res)=>{
   res.render('cart')
 })
-
+app.get('/search',(req,res)=>{
+  res.render('product');
+})
 //  POST requests
+app.post('/',(req,res)=>{
+  db.select('*').from ('products')
+    .then(productsDB=>{ 
+      if(!productsDB.length) {
+        req.body.forEach(element => {
+          db('products').insert({
+            title : element.title,
+            category :element.category,
+            description :element.description,
+            image:element.image,
+            price: Number(element.price),
+            rating: Number(element.rating.rate),
+            votes_count: Number(element.rating.count)
+        })
+        .catch (err=>{
+            console.log(err);
+      })
+    });
+      res.json(false)
+      } 
+    })
+    .catch (err=>{
+      console.log(err);
+    })
+})
 app.post('/register',(req,res)=>{
     const {fname,lname,email,password} = req.body;
     // console.log(fname,lname,email,password);
     checkIfExists(email,password)
     .then(data=>{
         if(!data.length){
-                db('users').insert({
-                    first_name : fname,
-                    last_name : lname,
-                    email,
-                    password
-                })
-                .returning ('*')
-                .then (user=>{
-                  res.json(user[0]);
-                })
-                .catch (err=>{
-                    console.log(err);
-            })
+            db('users').insert({
+              first_name : fname,
+              last_name : lname,
+              email,
+              password
+          })
+          .returning ('*')
+          .then (user=>{
+            res.json(user[0]);
+          })
+          .catch (err=>{
+              console.log(err);
+        })
         }     
         else{
             res.json(false)
@@ -67,14 +95,12 @@ app.post('/register',(req,res)=>{
     });
 
 })
-
 app.post('/signIn',(req,res)=>{
     const {email,password} = req.body;
     // console.log(email,password);
     isSignedIn(email,password)
     .then(data=>{
         if(data.length){
-          console.log(data[0]);
             res.json(data[0]);
         }   
         else {
@@ -82,6 +108,11 @@ app.post('/signIn',(req,res)=>{
         }
     });
 
+})
+app.post('/search',(req,res)=>{
+  const {select_Category,product_search} = req.body;
+  console.log(select_Category,product_search);
+  res.json(true)
 })
 
 
@@ -95,8 +126,6 @@ function isSignedIn(email,password){
   return db.select('first_name','last_name').from ('users')
   .where({email,password});
 }
-
-
 app.listen(3000,()=>{
   console.log('server is running on port 3000');
 });
