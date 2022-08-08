@@ -43,8 +43,10 @@ app.get('/cart',(req,res)=>{
   res.render('cart');
 })
 app.get('/search',(req,res)=>{
-  
+  res.render('product');
 })
+
+
 //  POST requests
 app.post('/',(req,res)=>{
   db.select('*').from ('products')

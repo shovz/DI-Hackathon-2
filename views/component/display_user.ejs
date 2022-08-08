@@ -44,7 +44,9 @@
             })
             .then(res=>res.json())
             .then(cart_items_data=>{
-                displayCartItems(cart_items_data);
+                localStorage.setItem("cart",JSON.stringify(cart_items_data))
+                window.location.href="http://localhost:3000/cart"
+
             })
             .catch(e=> {
                 console.log(e);
@@ -67,61 +69,5 @@
         window.location.href="http://localhost:3000/"
     })
     
-    function displayCartItems(cart_items_data){
-        cart_items_data.forEach(element => {
-            let {description,title,image,price} = element;
-            
-            let quantity = document.createElement("div");
-            quantity.classList.add("quantity");
-            let minus = document.createElement("div");
-            minus.id = "minus";
-            let amount = document.createElement("div");
-            amount.id = "amount";
-            let plus = document.createElement("div");
-            plus.id = "plus";
-            quantity.append(minus,amount,plus);
-
-            let cart_item_delete = document.createElement("div");
-            cart_item_delete.classList.add("cart_item_delete");
-            // let i = document.createElement("i");
-            // i.classList+="fa-regular fa-trash-can";
-            // console.log((i));
-            // cart_item_delete.appendChild(i);
-            
-        
-            let cart_item_right = document.createElement("div");
-            cart_item_right.classList.add("cart_item_right");
-            cart_item_right.append(cart_item_delete,quantity);
-
-            let cart_item_info = document.createElement("div");
-            cart_item_info.classList.add("cart_item_info");
-            let cart_item_title = document.createElement("div");
-            cart_item_title.classList.add("cart_item_title");
-            let cart_item_description = document.createElement("div");
-            cart_item_description.classList.add("cart_item_description");
-            let cart_item_price = document.createElement("div");
-            cart_item_price.classList.add("cart_item_price");
-            cart_item_info.append(cart_item_title,cart_item_description,cart_item_price);
-
-            let product_img = document.createElement("div");
-            product_img.classList.add("product_img");
-            let img = document.createElement("img");
-            product_img.append(img);
-
-            let select_item = document.createElement("input");
-            select_item.classList.add("select_item");
-
-            let cart_item = document.createElement("div");
-            cart_item.classList.add("cart_item");
-            cart_item.append(select_item,product_img,cart_item_info,cart_item_right);
-            console.log(cart_item);
-
-            let cart_items = document.querySelector(".cart_items");
-            cart_items.append(cart_item);
-            window.location.href="http://localhost:3000/cart"
-
-        });
-        
-      }
 
  </script>
