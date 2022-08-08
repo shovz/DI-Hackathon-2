@@ -16,6 +16,7 @@
     let signin = document.getElementById("signin");
     let signOut = document.getElementById("signOut");
     let register = document.getElementById("register");
+    
     // console.log(user);
     if(signed_user==null){
         user.style.display="none";
@@ -32,9 +33,26 @@
     }
 
     cart.addEventListener('click',()=>{
+        console.log(signed_user);
         if(signed_user){
-            window.location.href="http://localhost:3000/cart"
-        }
+            fetch('http://localhost:3000/cart',{
+                method:'POST',
+                headers: {
+                'Content-Type':'application/json'
+                },
+                body: JSON.stringify({signed_user})
+            })
+            .then(res=>res.json())
+            .then(cart_items_data=>{
+                localStorage.setItem("cart",JSON.stringify(cart_items_data))
+                window.location.href="http://localhost:3000/cart"
+
+            })
+            .catch(e=> {
+                console.log(e);
+            })
+           
+      }        
         else{
             window.location.href="http://localhost:3000/register"
 
@@ -50,5 +68,6 @@
         localStorage.clear();
         window.location.href="http://localhost:3000/"
     })
+    
 
  </script>
