@@ -1,13 +1,13 @@
 const express = require('express');
 const knex = require('knex');
-let username;
+
 const db = knex({
     client:'pg',
     connection:{
       host: '127.0.0.1',
       port: 5432,
       user: 'postgres',
-      password: 'Longtom123', //enter your password
+      password: 'test', //enter your password
       database: 'Big_Buyers'
     }
   })
@@ -107,7 +107,7 @@ app.post('/signIn',(req,res)=>{
     isSignedIn(email,password)
     .then(data=>{
         if(data.length){
-
+            console.log(data[0]);
             res.json(data[0]);
         }   
         else {
@@ -117,6 +117,8 @@ app.post('/signIn',(req,res)=>{
 
 })
 app.post('/cart',(req,res)=>{
+  let {user_id}= req.body;
+  console.log(user_id);
   try{
     db('cart')
     .innerJoin('users',function() {
@@ -126,7 +128,7 @@ app.post('/cart',(req,res)=>{
         this.orOn('cart.product_id', '=', 'products.product_id')
     })
     .select('*')
-    .where({email: username})
+    .where({'users.user_id':user_id})
     .then(data=>{
       res.json(data)
     }).catch(err=>{
@@ -171,11 +173,11 @@ app.post('/search',(req,res)=>{
 
 app.post('/addedproducts',(req,res)=>{
         let {user_id, product_id} = req.body;
-        console.log(user_id);
+        console.log(user_id,product_id);
         try{
                 db('cart').insert({
-                        user_id : user_id,
-                        product_id : product_id,
+                        user_id,
+                        product_id,
                 })
                 .returning ('*')
                 .then (cartdb=>{
@@ -197,7 +199,7 @@ function checkIfExists(email,password){
     .where({email,password});
 }
 function isSignedIn(email,password){
-  return db.select('first_name','last_name').from ('users')
+  return db.select('user_id','first_name','last_name').from ('users')
   .where({email,password});
 }
 app.listen(3000,()=>{
