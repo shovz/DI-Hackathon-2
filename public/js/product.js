@@ -61,7 +61,7 @@ function loadProducts(productArr) {
         const container = document.getElementById("products");
         const message = document.createElement('h1');
         message.textContent = 'No products found. Please widen your search';
-        container.appendChild(message);
+        document.body.insertBefore(message,container);
     } else{
         let high = document.getElementById('high')
         high.addEventListener('click', highLow)
@@ -74,6 +74,7 @@ function loadProducts(productArr) {
 
             cartButton.textContent = "Add to Cart";
             cartButton.addEventListener("click", cartButtonClicked);
+            cartButton.classList = "add_to_cart_btn"
             boxContainer.setAttribute('id', i+1)
             boxContainer.classList.add('boxContainer'); 
 
@@ -81,7 +82,7 @@ function loadProducts(productArr) {
             const productPrice = productArr[i].price;
             const productDescription = productArr[i].description;
             const productImage = productArr[i].image;
-            const nameBeneath = document.createElement('h6');
+            const nameBeneath = document.createElement('h4');
             nameBeneath.innerHTML = productName;
             boxContainer.appendChild(nameBeneath);
 
@@ -124,6 +125,7 @@ function addToCart(user_id, product_id) {
         .then(res=>res.json())
         .then(dbdata=>{
             console.log(dbdata);
+            alert("item added to cart")
 
         })
         .catch(e=> {

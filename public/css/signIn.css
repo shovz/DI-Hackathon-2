@@ -14,16 +14,18 @@ body{
     max-width: 560px;
     align-items: center;
     margin: 60px auto;
-    border: ;
     height: 600px;
-    background-color: rgb(120, 40, 115);
+    background-color: white;
+    box-shadow: 0 1px 5px 1px gray;
+    border-radius: 10px;
+    padding: 10px;
+   
     
 }
 .form_container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
     
 }
 
@@ -40,14 +42,33 @@ body{
     font-size: 1.3em;
     font-weight: bold;
     padding: 10px;
+    margin-top: 35px;
  
 }
 
-#signIn_form>h1{
-    margin-bottom: 0.5em;
+#signin_title{
+    font-size: 1.8em;
+    margin-bottom: 1.2em;
+    height: 30px;
 }
 #signIn_btn{
     width: 100%;
-    height: 30px;
+    height: 40px;
     align-self: center;
+    margin-bottom: 30px;
+    background-color: #1965ac;
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#signIn_form>a{
+    width: 90px;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    align-self:center;
 }

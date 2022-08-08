@@ -8,7 +8,7 @@ const registerUser=(event)=>{
     let password = document.getElementById("password").value;
     let password_check = document.getElementById("password_check").value;
     console.log(fname,lname,email,password);
-    if(password.length>=0){
+    if(password.length>=6){
       if(password_check===password){
         fetch('http://localhost:3000/register',{
             method:'POST',

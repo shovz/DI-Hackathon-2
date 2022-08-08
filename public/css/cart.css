@@ -30,9 +30,7 @@
     width: 100%;
     justify-content: flex-start;
     height: 100px;
-    box-shadow: 0 1px 5px 1px gray;
-    border-radius: 10px;
-    padding: 10px;
+
 
 }
 .Select_all_items{
@@ -50,12 +48,8 @@
     display: flex;
     height: 150px;
     margin: 10px 0;
-    /* border: 1px solid gray; */
-    
-    box-shadow: 0 0 5px 1px gray;
     align-items: center;
-    padding: 0 10px;
-    border-radius: 10px;
+
 }
 .product_img>img{
     height: 100px;
@@ -109,6 +103,7 @@
     height: 250px;
     width: 100%;
     position: relative;
+    box-shadow: 0 0 1px 1px gray;
 }
 #checkout{
     width: 80%;
@@ -122,7 +117,7 @@
 .payment_methods{
     padding: 0 5px;
     margin-top: 20px;
-    height: 300px;
+    height: 200px;
 }
 .payments_logos{
     padding-left: 5px;
@@ -136,4 +131,10 @@
 }
 .buyer_Protection{
     display: flex;
+}
+
+.cart_item, .cart_title,.summary,.payment_methods{
+    box-shadow: 0 1px 5px 1px gray;
+    border-radius: 10px;
+    padding: 10px;
 }
