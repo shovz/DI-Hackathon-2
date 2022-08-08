@@ -2,6 +2,9 @@ let home = document.querySelector(".logo");
 let searchForm = document.getElementsByTagName("form")[0];
 let search = document.getElementById("search_Category");
 let product_search="";
+
+
+
 home.addEventListener("click",()=>{
      window.location.href="http://localhost:3000/"
  })

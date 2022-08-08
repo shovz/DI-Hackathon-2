@@ -1,5 +1,5 @@
 const express = require('express');
-const knex = require('knex');
+const knex = require('../Game-Hackathon/node_modules/knex/types');
 
 const db = knex({
     client:'pg',
@@ -132,7 +132,7 @@ app.post('/cart',(req,res)=>{
     .then(data=>{
       res.json(data)
     }).catch(err=>{
-        console.log(err,"asd");
+        console.log(err,);
     })
   }
   catch (err){
@@ -203,7 +203,47 @@ app.post('/deleteusercart',(req,res)=>{
        res.status(400).json({e});
   }
 })
-    
+   
+app.post('/deletecartitem',(req,res)=>{
+  let {cart_id} = req.body;
+  console.log(cart_id);
+  try{
+    db('cart')
+    .where({cart_id})
+    .del()
+    .then(res=>{
+      console.log(res);
+    })
+
+  }
+  catch(e) {
+       res.status(400).json({e});
+  }
+})
+
+app.post('/getotalprice',(req,res)=>{
+  let {user_id}= req.body;
+  try{
+    db('cart')
+    .innerJoin('users',function() {
+        this.on('cart.user_id', '=', 'users.user_id')
+    })
+    .innerJoin('products',function() {
+        this.orOn('cart.product_id', '=', 'products.product_id')
+    })
+    .sum('price')
+    .where({'users.user_id':user_id})
+    .then(data=>{
+      res.json(data[0])
+    }).catch(err=>{
+        console.log(err);
+    })
+  }
+  catch (err){
+    res.status(400).json({err})
+  }
+})
+
 
 
 

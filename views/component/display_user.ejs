@@ -12,26 +12,29 @@
  
  <script>
     let {username,user_id} = JSON.parse(localStorage.getItem("user")) || "";
-    console.log(username,user_id);
+    let items_in_cart = document.querySelector(".items_in_cart");
+
     let user = document.getElementById("user");
     let signin = document.getElementById("signin");
     let signOut = document.getElementById("signOut");
     let register = document.getElementById("register");
     
     // console.log(user);
-    if(username==null){
-        user.style.display="none";
-        signOut.style.display="none";
+    const isSignedin=()=>{
+        if(username==null){
+            user.style.display="none";
+            signOut.style.display="none";
+        }
+        else{
+            user.textContent= "hello\n"+ username;
+            user.style.display="inline";
+            user.style.cursor ="default"
+            signOut.style.display="inline";
+            register.style.display="none";
+            signin.style.display="none";
+        }
     }
-    else{
-        user.textContent= "hello\n"+ username;
-        user.style.display="inline";
-        user.style.cursor ="default"
-        signOut.style.display="inline";
-        register.style.display="none";
-        signin.style.display="none";
-
-    }
+    isSignedin();
 
     cart.addEventListener('click',()=>{
         console.log(user_id);
