@@ -1,3 +1,7 @@
+DROP TABLE cart;
+DROP TABLE users;
+DROP TABLE products;
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL ,
@@ -27,6 +31,4 @@ SELECT * FROM cart;
 SELECT * FROM users;
 SELECT * FROM products;
 
-DROP TABLE cart;
-DROP TABLE users;
-DROP TABLE produtcs;
+

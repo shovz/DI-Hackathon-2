@@ -6,19 +6,11 @@ home.addEventListener("click",()=>{
      window.location.href="http://localhost:3000/"
  })
 
- const getCategory=()=>{
-    let select_Category = document.getElementById("select_Category").value;
-    let category = document.getElementById("select_Category")
-    category.addEventListener('change',(event)=>{
-        select_Category = event.target.value;
-    })
-    return select_Category
-}
-
 const searchProduct=(event)=>{
 event.preventDefault();
-    let select_Category = getCategory();
+    let select_Category = document.getElementById("select_Category").value;
     localStorage.setItem("search",JSON.stringify({select_Category:select_Category,product_search:product_search}))
+    
     window.location.href="http://localhost:3000/search"
 
 }

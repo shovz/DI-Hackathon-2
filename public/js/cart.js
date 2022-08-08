@@ -13,6 +13,10 @@ user_cart.textContent= JSON.parse(localStorage.getItem("user")) + " Cart";
 //   }
 // }
 
+const createcart_item_info=()=>{
+
+}
+
 function displayCartItems(){
   let cart_items_data = JSON.parse(localStorage.getItem("cart"));
   cart_items_data.forEach(element => {

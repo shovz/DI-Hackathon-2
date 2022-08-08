@@ -11,19 +11,20 @@
 
  
  <script>
-    let signed_user = JSON.parse(localStorage.getItem("user"));
+    let {username,user_id} = JSON.parse(localStorage.getItem("user")) || "";
+    console.log(username);
     let user = document.getElementById("user");
     let signin = document.getElementById("signin");
     let signOut = document.getElementById("signOut");
     let register = document.getElementById("register");
     
     // console.log(user);
-    if(signed_user==null){
+    if(username==null){
         user.style.display="none";
         signOut.style.display="none";
     }
     else{
-        user.textContent= "hello\n"+ signed_user;
+        user.textContent= "hello\n"+ username;
         user.style.display="inline";
         user.style.cursor ="default"
         signOut.style.display="inline";
@@ -33,14 +34,14 @@
     }
 
     cart.addEventListener('click',()=>{
-        console.log(signed_user);
-        if(signed_user){
+        console.log(user_id);
+        if(username){
             fetch('http://localhost:3000/cart',{
                 method:'POST',
                 headers: {
                 'Content-Type':'application/json'
                 },
-                body: JSON.stringify({signed_user})
+                body: JSON.stringify({user_id})
             })
             .then(res=>res.json())
             .then(cart_items_data=>{

@@ -2,10 +2,10 @@ function getProducts() {
     // const container = document.getElementById("container");
     fetch("https://fakestoreapi.com/products")
     .then(res=> {
-        // console.log(res);
+        console.log(res);
         return res.json()})
     .then(data=>{
-        // console.log(data)
+        console.log(data)
         // filterItems(data)})
         loadProducts(data)})
         // loadProducts(data)
@@ -16,11 +16,11 @@ function getProducts() {
 
 getProducts()
 
- function clickItems() {
-    let buttons = document.getElementsByClassName('filter');
-    let temp = document.getElementById("products")
-    for (let i =0;i<buttons.length-1;i++) {
-        buttons[i].addEventListener("click", filterItems);
+function clickItems() {
+    buttons = document.getElementsByClassName('filter');
+    console.log(buttons);
+    for (button in buttons) {
+        buttons[button].addEventListener("click", filterItems);
     }
 }
 
