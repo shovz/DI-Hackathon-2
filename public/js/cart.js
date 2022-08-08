@@ -87,10 +87,10 @@ const seteventListeners= ()=>{
 
   let delete_buttons = document.querySelectorAll(".cart_item_delete");
   delete_buttons.forEach(element => {
-      element.addEventListener("click",deleteCartItems);
+      element.addEventListener("click", deleteCartItems);
   });
   let delete_all_button = document.querySelector("#cart_delete_all");
-  delete_all_button.addEventListener("click",deleteCartAllItems)
+  delete_all_button.addEventListener("click", deleteCartAllItems);
   
 }
 function displayCartItems(){
