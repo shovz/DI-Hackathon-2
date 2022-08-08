@@ -9,7 +9,6 @@
     flex-direction: column;
     margin: 15px auto;
     max-width: 60%;
-    background-color: darkgoldenrod;
     padding: 10px;
 }
 .user_cart{
@@ -30,31 +29,33 @@
     flex-direction: column;
     width: 100%;
     justify-content: flex-start;
-    background-color: darkcyan;
-    height: 60px;
+    height: 100px;
+    box-shadow: 0 1px 5px 1px gray;
+    border-radius: 10px;
+    padding: 10px;
 
 }
 .Select_all_items{
-    padding: 0 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-#cart_delete_all{
-    height: 30px;
-    right: 15px;
-    bottom: 10px;
-}
 .cart_items{
     display: flex;
     flex-direction: column;
-    background-color: darkgreen;
+    
     margin: 10px 0;
 }
 .cart_item{
     display: flex;
     height: 150px;
+    margin: 10px 0;
+    /* border: 1px solid gray; */
+    
+    box-shadow: 0 0 5px 1px gray;
     align-items: center;
+    padding: 0 10px;
+    border-radius: 10px;
 }
 .product_img>img{
     height: 100px;
@@ -64,6 +65,7 @@
     width: 15px;
     height: 15px;
     margin-right: 30px;
+    cursor: pointer;
 }
 .cart_item_info{
     width: 70%;
@@ -76,11 +78,12 @@
     flex-direction: column;
 
 }
-.cart_item_delete{
+.cart_item_delete, #cart_delete_all{
     display: flex;
     justify-content: flex-end;
     height: 50%;
     margin: 5px;
+    cursor: pointer;
 }
 .quantity{
     display: flex;
@@ -94,7 +97,6 @@
 .summary_section{
     width: 30%;
     padding: 0 15px;
-    background-color: darkgrey;
 }
 .subtotal,.total{
     display: flex;
@@ -104,8 +106,7 @@
 .summary{
     display: flex;
     flex-direction: column;
-    background-color: darkkhaki;
-    height: 50%;
+    height: 250px;
     width: 100%;
     position: relative;
 }
@@ -116,10 +117,12 @@
     position: absolute;
     bottom: 10px;
     left: 10%;
+    cursor: pointer;
 }
 .payment_methods{
+    padding: 0 5px;
     margin-top: 20px;
-    background-color: darkorchid;
+    height: 300px;
 }
 .payments_logos{
     padding-left: 5px;

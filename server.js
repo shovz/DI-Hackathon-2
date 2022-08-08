@@ -170,7 +170,6 @@ app.post('/search',(req,res)=>{
         res.status(400).json({e});
    }
 })
-
 app.post('/addedproducts',(req,res)=>{
         let {user_id, product_id} = req.body;
         console.log(user_id,product_id);
@@ -188,8 +187,23 @@ app.post('/addedproducts',(req,res)=>{
                 catch(e) {
                 res.status(400).json({e});
                 }
-     })
-     
+})
+app.post('/deleteusercart',(req,res)=>{
+  let {user_id} = req.body;
+  try{
+    db('cart')
+    .where({user_id})
+    .del()
+    .then(res=>{
+      console.log(res);
+    })
+
+  }
+  catch(e) {
+       res.status(400).json({e});
+  }
+})
+    
 
 
 
