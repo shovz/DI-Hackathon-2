@@ -7,7 +7,7 @@ const db = knex({
       host: '127.0.0.1',
       port: 5432,
       user: 'postgres',
-      password: 'test', //enter your password
+      password: 'Longtom123', //enter your password
       database: 'Big_Buyers'
     }
   })
@@ -140,11 +140,56 @@ app.post('/cart',(req,res)=>{
   }
 })
 app.post('/search',(req,res)=>{
-  const {select_Category,product_search} = req.body;
-  console.log(select_Category,product_search);
-
-  res.json(true)
+   let {search, category} = req.body;
+//    console.log(search, category);
+   try{
+        if (category == 'All') {
+                db('products')
+                .select('*')
+                .whereILike('title', `%${search}%`)
+                .then(data=>{
+                //   console.log(data);      
+                  res.json(data)
+                }).catch(err=>{
+                    console.log(err);
+                })     
+        } else {
+                db('products')
+                .select('*')
+                .where({category: category}) 
+                .andWhereILike('title', `%${search}%`)
+                .then(data=>{
+                //   console.log(data);      
+                  res.json(data)
+                }).catch(err=>{
+                    console.log(err);
+                })  
+        }
+   }
+   catch(e) {
+        res.status(400).json({e});
+   }
 })
+
+app.post('/addedproducts',(req,res)=>{
+        let {user_id, product_id} = req.body;
+        console.log(user_id);
+        try{
+                db('cart').insert({
+                        user_id : user_id,
+                        product_id : product_id,
+                })
+                .returning ('*')
+                .then (cartdb=>{
+                        // console.log(cartdb);
+                        res.json(cartdb);
+                 })
+                }
+                catch(e) {
+                res.status(400).json({e});
+                }
+     })
+     
 
 
 
@@ -160,3 +205,4 @@ function isSignedIn(email,password){
 app.listen(3000,()=>{
   console.log('server is running on port 3000');
 });
+
