@@ -8,17 +8,12 @@ home.addEventListener("click",()=>{
 
  const getCategory=()=>{
     let select_Category = document.getElementById("select_Category").value;
-    console.log(select_Category);
-    // let category = document.getElementById("select_Category")
-    // category.addEventListener('change',(event)=>{        
-    //     select_Category = event.target.textContent;
-    //     console.log(select_Category)
-    // })
     return select_Category
 }
 
 const searchProduct=(event)=>{
 event.preventDefault();
+    // localStorage.removeItem("search");
     let select_Category = getCategory();
     localStorage.setItem("search",JSON.stringify({select_Category:select_Category,product_search:product_search}))
     window.location.href="http://localhost:3000/search"
