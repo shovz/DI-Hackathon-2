@@ -90,9 +90,11 @@ function addToCart(user_id, product_id) {
         .then(res=>res.json())
         .then(dbdata=>{
             console.log(dbdata);
+
         })
         .catch(e=> {
             console.log(e);
         })
+
     
 }
