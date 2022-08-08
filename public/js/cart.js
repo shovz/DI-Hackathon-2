@@ -1,22 +1,98 @@
 // let register = document.getElementById("register");
 let user_cart = document.querySelector(".user_cart");
-user_cart.textContent= JSON.parse(localStorage.getItem("user")) + " Cart";
-
-// let Select_all_items = document.querySelector('.Select_all_items input');
-
+user_cart.textContent= username + " Cart";
+let Select_all_items = document.querySelector('.Select_all_items input');
 
 
-// const SelectAllCartItems=()=>{
-  
-//   if(Select_all_items.checked){
 
-//   }
-// }
-
-const createcart_item_info=()=>{
-
+const SelectAllCartItems=()=>{
+  let select_item = document.querySelectorAll(".select_item")
+  if(Select_all_items.checked){
+    select_item.forEach(element => {
+        element.checked = true;
+    });
+  }
+  else{
+    select_item.forEach(element => {
+      element.checked = false;
+  });
+  }
 }
 
+
+const deleteDbCartItem=()=>{
+  fetch('http://localhost:3000/deleteusercart',{
+                method:'POST',
+                headers: {
+                'Content-Type':'application/json'
+                },
+                body: JSON.stringify({user_id})
+            })
+            .then(res=>res.json())
+            .then(()=>{
+                localStorage.removeItem("cart")
+                window.location.href="http://localhost:3000/cart"
+
+            })
+            .catch(e=> {
+                console.log(e);
+            })
+}
+
+const deleteCartItems=(event)=>{
+  const isSelected = event.target.parentElement
+                    .parentElement.parentElement.firstElementChild;
+  const parentElem = event.target.parentElement.parentElement.parentElement;
+  console.log(isSelected);
+  if(isSelected.checked)
+  {
+    parentElem.remove();
+  }
+}
+
+
+const deleteDbCartItems=()=>{
+  fetch('http://localhost:3000/deleteusercart',{
+                method:'POST',
+                headers: {
+                'Content-Type':'application/json'
+                },
+                body: JSON.stringify({user_id})
+            })
+            .then(res=>res.json())
+            .then(()=>{
+                localStorage.removeItem("cart")
+                window.location.href="http://localhost:3000/cart"
+
+            })
+            .catch(e=> {
+                console.log(e);
+            })
+}
+
+const deleteCartAllItems=(event)=>{
+  let all_cart_items = document.querySelectorAll(".cart_item")
+  if(Select_all_items.checked)
+  {
+    all_cart_items.forEach(element => {
+        element.remove();
+    });
+    Select_all_items.checked = false
+  }
+  deleteDbCartItems();
+}
+
+
+const seteventListeners= ()=>{
+
+  let delete_buttons = document.querySelectorAll(".cart_item_delete");
+  delete_buttons.forEach(element => {
+      element.addEventListener("click",deleteCartItems);
+  });
+  let delete_all_button = document.querySelector("#cart_delete_all");
+  delete_all_button.addEventListener("click",deleteCartAllItems)
+  
+}
 function displayCartItems(){
   let cart_items_data = JSON.parse(localStorage.getItem("cart"));
   cart_items_data.forEach(element => {
@@ -68,6 +144,7 @@ function displayCartItems(){
 
       let select_item = document.createElement("input");
       select_item.classList.add("select_item");
+      select_item.type = "checkbox";
 
       let cart_item = document.createElement("div");
       cart_item.classList.add("cart_item");
@@ -77,11 +154,13 @@ function displayCartItems(){
       let cart_items = document.querySelector(".cart_items");
       cart_items.append(cart_item);
   });
-  
+  seteventListeners();
 }
 displayCartItems();
 
-// Select_all_items.addEventListener("change",SelectAllCartItems);
+
+
+Select_all_items.addEventListener("change",SelectAllCartItems);
 
 
 

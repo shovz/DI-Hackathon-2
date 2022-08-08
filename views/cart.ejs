@@ -21,14 +21,15 @@
     <!------------>
 
     <section class="my_cart">
-        <div class="user_cart"></div>
+        
         <div class="cart_list_section">
             <div class="cart_list">
                 <div class="cart_title">
+                    <div class="user_cart"></div>
                     Select all items
                     <div class="Select_all_items">
                         <input type="checkbox" name="Select_all_items" class="select_item">
-                        <button id="cart_delete_all">delete</button>
+                        <i id="cart_delete_all" class=" fa-regular fa-trash-can"></i>
                     </div>
                 </div>
                 <%- include ("./component/cart_items")%>
