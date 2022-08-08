@@ -1,6 +1,6 @@
 const express = require('express');
 const knex = require('knex');
-let user;
+let username;
 const db = knex({
     client:'pg',
     connection:{
@@ -102,8 +102,7 @@ app.post('/register',(req,res)=>{
 app.post('/signIn',(req,res)=>{
  
     const {email,password} = req.body;
-    user=email;
-    console.log(user);
+    username=email;
     // console.log(email,password);
     isSignedIn(email,password)
     .then(data=>{
@@ -118,7 +117,6 @@ app.post('/signIn',(req,res)=>{
 
 })
 app.post('/cart',(req,res)=>{
-  console.log(user);
   try{
     db('cart')
     .innerJoin('users',function() {
@@ -128,7 +126,7 @@ app.post('/cart',(req,res)=>{
         this.orOn('cart.product_id', '=', 'products.product_id')
     })
     .select('*')
-    .where({email: user})
+    .where({email: username})
     .then(data=>{
       res.json(data)
     }).catch(err=>{
@@ -136,7 +134,7 @@ app.post('/cart',(req,res)=>{
     })
   }
   catch (err){
-    res.status(500).json({message: "can't get posts"})
+    res.status(400).json({err})
   }
 })
 app.post('/search',(req,res)=>{

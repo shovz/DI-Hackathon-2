@@ -19,14 +19,14 @@ const registerUser=(event)=>{
           })
         .then(res=>res.json())
         .then(data=>{
-          
           if(data==false){
             alert('User already exists');
           }
           else{
             localStorage.clear();
+            let user_id = data.user_id;
             let username = data.first_name +" "+ data.last_name;
-            localStorage.setItem("user",JSON.stringify(username))
+            localStorage.setItem("user",JSON.stringify({username,user_id}))
             window.location.href="http://localhost:3000/"
           }
         })
