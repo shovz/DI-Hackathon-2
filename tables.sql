@@ -1,7 +1,6 @@
 DROP TABLE cart;
 DROP TABLE users;
 DROP TABLE products;
-
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL ,
@@ -23,12 +22,17 @@ CREATE TABLE products (
 
 CREATE TABLE cart (
     cart_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL UNIQUE  REFERENCES users (user_id) ON DELETE CASCADE,
-    product_id INTEGER NOT NULL UNIQUE  REFERENCES products (product_id) ON DELETE CASCADE
+    user_id INTEGER NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL  REFERENCES products (product_id) ON DELETE CASCADE
 );
 
-SELECT * FROM cart;
+
+
+SELECT * FROM cart
+JOIN products ON cart.product_id=products.product_id
+JOIN users ON cart.user_id=users.user_id;
+
+
+
 SELECT * FROM users;
 SELECT * FROM products;
-
-

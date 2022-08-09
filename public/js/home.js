@@ -1,5 +1,7 @@
 let cards_title = document.querySelectorAll(".card_title");
 
+//sfillters products api data and creating array 
+// of categories with no double values
 const filterProducts=(data)=>{
   let category = [];
   data.forEach(element => {
@@ -9,30 +11,40 @@ const filterProducts=(data)=>{
   category= [...new Set(category)];
   return category;
 }
+
+///loading products data to home page,
+// setting cards info
 const loadProductsToCards=(data)=>{
   let category = filterProducts(data);
-  // console.log(products.image);
   for (let i = 0; i < category.length; i++) {
     cards_title[i].innerHTML = category[i];
     cards_title[7-i].innerHTML = category[i];
   }
 
+   //setting cards titles
   for (let i = 0; i < cards_title.length; i++) {
+       //setting cards with 4 img layout 
       if(cards_title[i].textContent==`men's clothing`){
         setSpreadItem(i,0);
       }
+      //setting cards with 1 img layout 
       if(cards_title[i].textContent==`jewelery`){
         let index= Math.floor(Math.random()*4+4);
           cards_title[i].nextElementSibling.children[0].src = data[index].image;
       }
+      //setting cards with 4 img layout
       if(cards_title[i].textContent==`electronics`){
           setSpreadItem(i,8);
       }
+
+       //setting cards with 1 img layout 
       if(cards_title[i].textContent==`women's clothing`){
         let index= Math.floor(Math.random()*4+15);
           cards_title[i].nextElementSibling.children[0].src = data[index].image;
       }
   }
+
+  //setting cards with 4 img layout 
   function setSpreadItem (i,index){
     for (let j = 0; j < 4; j++) {
       cards_title[i].nextElementSibling.children[j].children[0].src = data[index].image;
@@ -45,15 +57,17 @@ const loadProductsToCards=(data)=>{
 }
 
 
+
+
+///fetching products data from api
 const fetchProducts=(function(){
   let status=true;
   fetch("https://fakestoreapi.com/products")
   .then(res=> {
     return res.json()
   })
-  .then(data=>{
-    // console.log(status);
-    if(status){
+  .then(data=>{ 
+    if(status){  ///inserting products data to the database 
       fetch('http://localhost:3000/',{
         method:'POST',
         headers: {
@@ -63,13 +77,12 @@ const fetchProducts=(function(){
       })
       .then(res=>res.json())
       .then(is_inserted=>{
-        console.log("inserting database database");
         status= is_inserted})
     .catch(err=> {
         console.log(err);
       })
     }
-    loadProductsToCards(data);
+    loadProductsToCards(data); ///loading products data to home page
   })
   .catch(err=>{
     console.log(err);

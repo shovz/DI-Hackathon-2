@@ -46,8 +46,11 @@ app.get('/search',(req,res)=>{
   res.render('product');
 })
 
-
+// 
 //  POST requests
+// 
+
+// inserting products api info into the database
 app.post('/',(req,res)=>{
   db.select('*').from ('products')
     .then(productsDB=>{ 
@@ -73,12 +76,13 @@ app.post('/',(req,res)=>{
       console.log(err);
     })
 })
+
+// inserting user info to database
 app.post('/register',(req,res)=>{
     const {fname,lname,email,password} = req.body;
-    // console.log(fname,lname,email,password);
-    checkIfExists(email,password)
+    checkIfExists(email,password) //checking if user exist
     .then(data=>{
-        if(!data.length){
+        if(!data.length){ 
             db('users').insert({
               first_name : fname,
               last_name : lname,
@@ -99,11 +103,12 @@ app.post('/register',(req,res)=>{
     });
 
 })
+
+//checking if user exist
 app.post('/signIn',(req,res)=>{
  
     const {email,password} = req.body;
     username=email;
-    // console.log(email,password);
     isSignedIn(email,password)
     .then(data=>{
         if(data.length){
@@ -116,6 +121,8 @@ app.post('/signIn',(req,res)=>{
     });
 
 })
+
+// retrive user cart info
 app.post('/cart',(req,res)=>{
   let {user_id}= req.body;
   console.log(user_id);
@@ -139,6 +146,8 @@ app.post('/cart',(req,res)=>{
     res.status(400).json({err})
   }
 })
+
+// retrive searched products info
 app.post('/search',(req,res)=>{
    let {search, category} = req.body;
 //    console.log(search, category);
@@ -170,6 +179,8 @@ app.post('/search',(req,res)=>{
         res.status(400).json({e});
    }
 })
+
+// inserting selected product info to cart table
 app.post('/addedproducts',(req,res)=>{
         let {user_id, product_id} = req.body;
         console.log(user_id,product_id);
@@ -188,6 +199,8 @@ app.post('/addedproducts',(req,res)=>{
                 res.status(400).json({e});
                 }
 })
+
+//deleting all products from the cart table 
 app.post('/deleteusercart',(req,res)=>{
   let {user_id} = req.body;
   try{
@@ -203,7 +216,8 @@ app.post('/deleteusercart',(req,res)=>{
        res.status(400).json({e});
   }
 })
-   
+
+//deleting product from the cart table 
 app.post('/deletecartitem',(req,res)=>{
   let {cart_id} = req.body;
   console.log(cart_id);
@@ -221,6 +235,7 @@ app.post('/deletecartitem',(req,res)=>{
   }
 })
 
+// retrive total products price
 app.post('/getotalprice',(req,res)=>{
   let {user_id}= req.body;
   try{
@@ -246,16 +261,22 @@ app.post('/getotalprice',(req,res)=>{
 
 
 
-
+// 
 //DataBase select Fucntion
+// 
+
+//checking if user exist
 function checkIfExists(email,password){
     return db.select('email','password').from ('users')
     .where({email,password});
 }
+
+//checking if user exist
 function isSignedIn(email,password){
   return db.select('user_id','first_name','last_name').from ('users')
   .where({email,password});
 }
+
 app.listen(3000,()=>{
   console.log('server is running on port 3000');
 });

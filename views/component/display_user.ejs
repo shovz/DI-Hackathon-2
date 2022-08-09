@@ -19,7 +19,8 @@
     let signOut = document.getElementById("signOut");
     let register = document.getElementById("register");
     
-    // console.log(user);
+    // checking if user is signin 
+    // if yes display his name & signout button + remove signin and register
     const isSignedin=()=>{
         if(username==null){
             user.style.display="none";
@@ -36,9 +37,10 @@
     }
     isSignedin();
 
+    // fetching crat items from database
     cart.addEventListener('click',()=>{
         console.log(user_id);
-        if(username){
+        if(username){   //checking if user is signin
             fetch('http://localhost:3000/cart',{
                 method:'POST',
                 headers: {

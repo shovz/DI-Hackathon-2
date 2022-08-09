@@ -7,6 +7,8 @@ let total_price= document.querySelector("#total_price");
 let tax= document.querySelector("#tax");
 let checkout= document.querySelector("#checkout");
 
+//checking if user clicked on "select all" button
+// and change each card sselect button accordingly
 const SelectAllCartItems=()=>{
   let select_item = document.querySelectorAll(".select_item")
   if(Select_all_items.checked){
@@ -21,7 +23,7 @@ const SelectAllCartItems=()=>{
   }
 }
 
-
+// deleting selected item from cart databse
 const deleteDbCartItem=(parentElem)=>{
   let cart_id= parentElem.id;
   fetch('http://localhost:3000/deletecartitem',{
@@ -40,6 +42,7 @@ const deleteDbCartItem=(parentElem)=>{
             })
 }
 
+// deleting selected item from cart
 const deleteCartItems=(event)=>{
   const isSelected = event.target.parentElement
                     .parentElement.parentElement.firstElementChild;
@@ -52,7 +55,7 @@ const deleteCartItems=(event)=>{
   deleteDbCartItem(parentElem);
 }
 
-
+// deleting all items from cart databse
 const deleteDbCartItems=()=>{
   fetch('http://localhost:3000/deleteusercart',{
                 method:'POST',
@@ -72,6 +75,7 @@ const deleteDbCartItems=()=>{
             })
 }
 
+// deleting all items from cart
 const deleteCartAllItems=(event)=>{
   let all_cart_items = document.querySelectorAll(".cart_item")
   if(Select_all_items.checked)
@@ -84,7 +88,7 @@ const deleteCartAllItems=(event)=>{
   deleteDbCartItems();
 }
 
-
+// setting event listeners to the delete icons
 const seteventListeners= ()=>{
 
   let delete_buttons = document.querySelectorAll(".cart_item_delete");
@@ -95,6 +99,8 @@ const seteventListeners= ()=>{
   delete_all_button.addEventListener("click", deleteCartAllItems);
   
 }
+
+// displaying fetched cart items
 function displayCartItems(){
   let cart_items_data = JSON.parse(localStorage.getItem("cart"));
   cart_items_data.forEach(element => {
@@ -172,6 +178,8 @@ function displayCartItems(){
 }
 displayCartItems();
 
+
+// calc total price of cart items
 function calcTotalPrice(){
   fetch('http://localhost:3000/getotalprice',{
                 method:'POST',

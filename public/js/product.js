@@ -1,11 +1,18 @@
+
+
+//fetching searched info from local storage
 function getStorage() {
-    let {select_Category, product_search} = JSON.parse(localStorage.getItem("search"))
-    console.log(select_Category, product_search);
+    let {select_Category, 
+         product_search} = JSON.parse(localStorage.getItem("search"))
+    // console.log(select_Category, product_search);
+
+    //fetching filltered products from server
     filterItemsOne(select_Category, product_search);
 }
 
 getStorage();
 
+    //fetching filltered products from server
 function filterItemsOne(category, search) {
     fetch('http://localhost:3000/search',{
         method:'POST',
@@ -19,8 +26,8 @@ function filterItemsOne(category, search) {
     })
     .then(res=>res.json())
     .then(dbdata=>{
-        loadProducts(dbdata);
-        filterProducts(dbdata)
+        loadProducts(dbdata);    //loading filltered products 
+        filterProducts(dbdata)   //setting user fillter options (price low to high etc..) 
         // console.log(dbdata);
     })
     .catch(e=> {
@@ -29,7 +36,8 @@ function filterItemsOne(category, search) {
    
 }  
 
-
+ //setting user fillter options (price low to high etc..) 
+//  to be continued
 function filterProducts(dbdata) {
     let high = document.getElementById('high');
     let low = document.getElementById('low');
@@ -48,21 +56,20 @@ function filterProducts(dbdata) {
     })
 }
 
-function highLow (Arr) {
-    console.log(Arr);
-}
 
-
-
-
+//loading filltered products to page
 function loadProducts(productArr) {
-    console.log(productArr);
+    // console.log(productArr);
+
+    // checking if there are no items found
+    // and display a message
     if (productArr.length === 0) {
         const container = document.getElementById("products");
         const message = document.createElement('h1');
         message.textContent = 'No products found. Please widen your search';
         document.body.insertBefore(message,container);
     } else{
+        // creating prodduct card + info
         let high = document.getElementById('high')
         high.addEventListener('click', highLow)
         const container = document.getElementById("products");

@@ -1,5 +1,6 @@
 let signIn_form = document.getElementById("signIn_form");
 
+
 const signInUser=(event)=>{
     event.preventDefault();
     let email = document.getElementById("email").value;
@@ -18,6 +19,8 @@ const signInUser=(event)=>{
             alert('User does not exists');
           }
           else{
+            //if user managed to sginin insert his name and id to local storage
+            // and loading main page
             localStorage.clear();
             let user_id = data.user_id;
             let username = data.first_name +" "+ data.last_name;

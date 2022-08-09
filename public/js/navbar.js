@@ -4,35 +4,24 @@ let search = document.getElementById("search_Category");
 let product_search="";
 
 
-
+//setting company logo to home page
 home.addEventListener("click",()=>{
      window.location.href="http://localhost:3000/"
  })
 
- const getCategory=()=>{
-    let select_Category = document.getElementById("select_Category").value;
-    return select_Category
-}
 
 const searchProduct=(event)=>{
-event.preventDefault();
-    // localStorage.removeItem("search");
-    let select_Category = getCategory();
-    localStorage.setItem("search",JSON.stringify({select_Category:select_Category,product_search:product_search}))
-    window.location.href="http://localhost:3000/search"
-
+    event.preventDefault();
+    let select_Category = document.getElementById("select_Category").value;//fetching Category input
+    localStorage.setItem("search",JSON.stringify({ //saving search inputs to local storage
+        select_Category:select_Category,
+        product_search:product_search
+    }))
+    window.location.href="http://localhost:3000/search" //loading searched products page
 }
 
 
+//fetching search input
+search.addEventListener('input',(event)=>{product_search = event.target.value;})
 
-search.addEventListener('input',(event)=>{
-product_search = event.target.value;
-
-
-searchForm.addEventListener("submit",searchProduct);
-})
-
-
-search.addEventListener('input',(event)=>{product_search = event.target.value
-})
 searchForm.addEventListener("submit",searchProduct);
