@@ -1,5 +1,5 @@
 const express = require('express');
-const knex = require('../Game-Hackathon/node_modules/knex/types');
+const knex = require('knex');
 
 const db = knex({
     client:'pg',
