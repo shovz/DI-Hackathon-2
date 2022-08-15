@@ -27,3 +27,5 @@
 -   Now some general feedback:
     -   Use more `const` instead of `let`, since `let` should only be used when you're planning on changing the variable's value later on.
     -   What you did at the end of your code by making utility functions was nice. I'd recommend using more of those in the future. Also, you can put them in their own file and import them throughout your code when needed instead of keeping everything in the main server file.
+    -   When you create a user in your database, it's more secure to hash their passwords as well. Look into the package `bcryptjs`.
+    -   It's nice that you implemented a login and that the login functionality is considered in the front end, but the main purpose of creating a login is **protected routes**. It means that when a user logs in, they get some kind of token that gets stored in the front end. This token can be sent along with fetch requests to protected routes as a sort of key. If that token doesn't exist in the request, or if the token isn't a good token, or if the token is a good token but not for this specific user, the user can't access the route.
